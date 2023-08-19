@@ -8,3 +8,4 @@
 - [ ] Add Dockerfile
 - [ ] Add More Tests
 - [ ] Add a simple UI for the application
+- [ ] Add benchmarks
