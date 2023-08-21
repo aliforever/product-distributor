@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Requests</title>
+</head>
+<body>
+
+<!-- Add Packages Form -->
+<h2>Add Packages</h2>
+<form id="addPackagesForm">
+    ID: <input type="text" id="addId" placeholder="e.g. P_5"><br>
+    Quantity: <input type="number" id="addQuantity" placeholder="e.g. 5000"><br>
+    <button type="button" onclick="addPackage()">Add Package</button>
+</form>
+
+<!-- Remove Packages Form -->
+<h2>Remove Packages</h2>
+<form id="removePackagesForm">
+    ID: <input type="text" id="removeId" placeholder="e.g. P_5"><br>
+    <button type="button" onclick="removePackage()">Remove Package</button>
+</form>
+
+<!-- Get Packages -->
+<h2>Get Packages</h2>
+<button type="button" onclick="getPackages()">Get All Packages</button>
+<ul id="packageList"></ul>
+
+<!-- Add Orders Form -->
+<h2>Add Orders</h2>
+<form id="addOrdersForm">
+    Quantity: <input type="number" id="orderQuantity" placeholder="e.g. 12006"><br>
+    <button type="button" onclick="addOrder()">Add Order</button>
+</form>
+<ul id="orderList"></ul>
+
+<script>
+    function addPackage() {
+        const data = {
+            id: document.getElementById('addId').value,
+            quantity: Number(document.getElementById('addQuantity').value)
+        };
+
+        fetch('https://api.4li.org/packages/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.ok ? "Package added successfully!" : "Failed to add package");
+            });
+    }
+
+    function removePackage() {
+        const data = {
+            id: document.getElementById('removeId').value
+        };
+
+        fetch('https://api.4li.org/packages/remove', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.ok ? "Package removed successfully!" : "Failed to remove package");
+            });
+    }
+
+    function getPackages() {
+        fetch('https://api.4li.org/packages')
+            .then(response => response.json())
+            .then(data => {
+                const ul = document.getElementById('packageList');
+                ul.innerHTML = '';
+                data.data.packages.forEach(package => {
+                    const li = document.createElement('li');
+                    li.textContent = `ID: ${package.id}, Quantity: ${package.quantity}`;
+                    ul.appendChild(li);
+                });
+            });
+    }
+
+    function addOrder() {
+        const data = {
+            quantity: Number(document.getElementById('orderQuantity').value)
+        };
+
+        fetch('https://api.4li.org/orders/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                const ul = document.getElementById('orderList');
+                ul.innerHTML = '';
+                data.data.forEach(order => {
+                    const li = document.createElement('li');
+                    li.textContent = `ID: ${order.id}, Quantity: ${order.quantity}`;
+                    ul.appendChild(li);
+                });
+            });
+    }
+</script>
+
+</body>
+</html>

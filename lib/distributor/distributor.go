@@ -38,4 +38,6 @@ func (d *Distributor) registerRoutes() {
 	d.router.HandleFunc("/packages/remove", d.handleRemovePackage)
 
 	d.router.HandleFunc("/orders/add", d.handleOrder)
+
+	d.router.Handle("/", http.FileServer(http.Dir("./public")))
 }

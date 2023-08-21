@@ -10,6 +10,8 @@
 - [ ] Add a simple UI for the application
 - [ ] Add benchmarks
 - [ ] Limit requests to GET/POST strictly
+- [ ] Add Dockerfile
+- [ ] Add authorization for http methods
 
 ## API Endpoints:
 - Get All: https://api.4li.org/packages
