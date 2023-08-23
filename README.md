@@ -3,6 +3,12 @@
 ## RUN
 `go run cmd/distributor/main.go`
 
+This will run an HTTP server on port 8080, you need to change the urls in index.html to match localhost or any other host you're running on
+
+After running the Http server the application will be accesible at given address
+
+Default: http://localhost:8080
+
 ## TODOs:
 - [ ] Add Configuration file for running the application
 - [ ] Add Dockerfile
