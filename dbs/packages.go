@@ -1,7 +1,7 @@
 package dbs
 
 import (
-	"github.com/aliforever/product-distributor/lib/distributor/models"
+	"github.com/aliforever/product-distributor/models"
 	"sync"
 )
 

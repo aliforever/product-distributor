@@ -42,7 +42,7 @@
             quantity: Number(document.getElementById('addQuantity').value)
         };
 
-        fetch('https://api.4li.org/packages/add', {
+        fetch('http://localhost:8080/packages/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -60,7 +60,7 @@
             id: document.getElementById('removeId').value
         };
 
-        fetch('https://api.4li.org/packages/remove', {
+        fetch('http://localhost:8080/packages/remove', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -74,7 +74,7 @@
     }
 
     function getPackages() {
-        fetch('https://api.4li.org/packages')
+        fetch('http://localhost:8080/packages')
             .then(response => response.json())
             .then(data => {
                 const ul = document.getElementById('packageList');
@@ -92,7 +92,7 @@
             quantity: Number(document.getElementById('orderQuantity').value)
         };
 
-        fetch('https://api.4li.org/orders/add', {
+        fetch('http://localhost:8080/orders/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
